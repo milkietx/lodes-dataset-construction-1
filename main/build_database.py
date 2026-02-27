@@ -8,6 +8,9 @@ import pandas as pd
 import geopandas as gpd
 import time
 import shapely
+import pyarrow
+from pathlib import Path
+
 
 def get_file_paths(folder_path: str = None)->list:
     """
@@ -286,7 +289,7 @@ def load_lodes_into_db(folder_path:str = None,spath:str = None,base_only:bool=Fa
 
     try:
         #get the file paths into 3 bunches
-        racs,wacs,ods,cw = get_file_paths(folder_path=fr"{folder_path}\**\*.*")
+        racs,wacs,ods,cw = get_file_paths(folder_path=fr"{folder_path}\*\*")
         
         if base_only == True:
             ods = [q for q in ods if any(x in q for x in ["JT00","JT01"])]
